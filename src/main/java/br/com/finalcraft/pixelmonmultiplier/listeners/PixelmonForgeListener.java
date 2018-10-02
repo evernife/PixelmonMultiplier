@@ -20,7 +20,7 @@ public class PixelmonForgeListener {
 
             int oldExp = event.getExperience();
             PMPlayerData pmPlayerData = PMPlayerData.getOrCreate(player.getName());
-            double multiplier = ConfigManager.getGlobalExpMultiplier() + pmPlayerData.getPersonalMultiplier() + MultiplierUtil.getPermissionMultiplier(player);
+            double multiplier = ConfigManager.getGlobalExpMultiplier() + pmPlayerData.getPersonalMultiplier() + MultiplierUtil.getByVipPermission(player) + MultiplierUtil.getByRankPermission(player);
             double newExp = oldExp + oldExp * multiplier;
 
             //Não possui nenhum multiplicador

@@ -109,17 +109,19 @@ public class CoreCommand implements CommandExecutor {
         PMPlayerData pmPlayerData = PMPlayerData.getOrCreate(player.getName());
         int personalMultiplier = (int) (pmPlayerData.getPersonalMultiplier() * 100);
         int globalMultiplier = (int) (ConfigManager.getGlobalExpMultiplier() * 100);
-        int permissionMultiplier = (int) (MultiplierUtil.getPermissionMultiplier(player) * 100);
+        int vipMultiplier = (int) (MultiplierUtil.getByRankPermission(player) * 100);
+        int rankMultiplier = (int) (MultiplierUtil.getByVipPermission(player) * 100);
 
-        int result = (personalMultiplier + globalMultiplier + permissionMultiplier)  * 100;
+        int result = personalMultiplier + globalMultiplier + vipMultiplier + rankMultiplier;
 
         String lore =
                 "§b ◈ §d§n" + player.getName() + " Multipliers Info\n" +
-                        "§2 ◈ §a + Multiplicador Pessoal: " + personalMultiplier + "%\n" +
-                        "§2 ◈ §a + Multiplicador por Permissão: " + globalMultiplier + "%\n" +
-                        "§2 ◈ §a + Multiplicador Global: " + permissionMultiplier + "%\n" +
+                        "§2 ◈ §a + Multiplicador Pessoal: §e" + personalMultiplier + "%\n" +
+                        "§2 ◈ §a + Multiplicador Global: §e" + globalMultiplier + "%\n" +
+                        "§2 ◈ §a + Multiplicador por Vip: §e" + vipMultiplier + "%\n" +
+                        "§2 ◈ §a + Multiplicador por Rank: §e" + rankMultiplier + "%\n" +
                         "\n" +
-                        "§2 ◈ §aMultiplicador Final: " + result + "%\n";
+                        "§2 ◈ §aSeu Multiplicador Final: §e§l" + result + "§6§l%\n";
 
         FancyText.sendTo(player, new FancyText("§a§lSeu MultiplicadorEXP possui o valor de: §e§l" + result + "§6§l%").setHoverText(lore));
         return CommandResult.success();
