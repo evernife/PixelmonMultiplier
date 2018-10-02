@@ -1,63 +1,84 @@
 buildscript {
     repositories {
         jcenter()
-        maven {
-            name = "forge"
-            url = "http://files.minecraftforge.net/maven"
-        }
-        maven {
-            url = "https://plugins.gradle.org/m2/"
-        }
+        maven { url = "http://files.minecraftforge.net/maven" }
     }
     dependencies {
-        classpath "net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT"
-        classpath "gradle.plugin.org.spongepowered:spongegradle:0.6"
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
 }
-
-allprojects {
-    repositories {
-        maven {
-            url 'https://jitpack.io'
-        }
-    }
+plugins {
+    id 'org.spongepowered.plugin' version '0.8.1'
 }
+apply plugin: 'net.minecraftforge.gradle.forge'
 
-apply plugin: "net.minecraftforge.gradle.forge"
-apply plugin: "org.spongepowered.plugin"
 
-version = modVersion
-group = modGroup
-archivesBaseName = modBaseName
+
+
+group 'br.com.finalcraft'
+version '1.0.8'
+archivesBaseName = "PixelmonMultiplier-[1.12.2]"
+
+apply plugin: "java"
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+sourceCompatibility = 1.8
 
 minecraft {
-    version = project.forgeVersion
+    version = "1.12.2-14.23.4.2705"
     runDir = "run"
 
-    mappings = project.mcpVersion
-    // makeObfSourceJar = false
+    // the mappings can be changed at any time, and must be in the following format.
+    // snapshot_YYYYMMDD   snapshot are built nightly.
+    // stable_#            stables are built at the discretion of the MCP team.
+    // Use non-default mappings at your own risk. they may not always work.
+    // simply re-run your setup task after changing the mappings to update your workspace.
+    mappings = "snapshot_20180616"
+    makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 }
 
 repositories {
+    flatDir {
+        dirs 'libs'
+    }
     mavenCentral()
+    maven {
+        // location of the maven that hosts JEI files
+        name = "Progwml6 maven"
+        url = "http://dvs1.progwml6.com/files/maven"
+    }
+    maven {
+        // location of a maven mirror for JEI files, as a fallback
+        name = "ModMaven"
+        url = "modmaven.k-4u.nl"
+    }
 }
 
 dependencies {
     compile 'org.spongepowered:spongeapi:7.1.0-SNAPSHOT'
-    compile 'com.github.rojo8399:PlaceholderAPI:4.4'
+
+    compile name: "EverNifeCoreSpongy-2.1.7d"
+    compile name: "PixelmonGenerations-1.12.2-2.2.1"
 }
 
+
 processResources {
+    // this will ensure that this task is redone when the versions change.
     inputs.property "version", project.version
     inputs.property "mcversion", project.minecraft.version
 
+    // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
-        include "mcmod.info"
+        include 'mcmod.info'
 
-        expand "version": project.version, "mcversion": project.minecraft.version
+        // replace version and mcversion
+        expand 'version':project.version, 'mcversion':project.minecraft.version
     }
 
+    // copy everything else except the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
-        exclude "mcmod.info"
+        exclude 'mcmod.info'
     }
 }
+

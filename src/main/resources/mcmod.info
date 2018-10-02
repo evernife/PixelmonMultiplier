@@ -1,16 +1,16 @@
 [
-  {
-    "modid": "pokexpmultiplier",
-    "name": "PokexpMultiplier",
-    "description": "",
-    "version": "${version}",
-    "mcversion": "${mcversion}",
-    "url": "https://www.happyzleaf.com/",
-    "updateUrl": "https://github.com/happyzleaf/PokexpMultiplier/releases",
-    "authorList": ["happyzlife"],
-    "credits": "",
-    "logoFile": "",
-    "screenshots": [],
-    "dependencies": []
-  }
+{
+  "modid": "pixelmonmultiplier",
+  "name": "PixelmonMultiplier",
+  "description": "EverNifes Pixelmon Mod",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "https://www.finalcraft.com.br",
+  "updateUrl": "",
+  "authorList": ["EverNife"],
+  "credits": "The Forge and FML guys, for making it all possible. Major credit to happyzleaf for having Open Source code.",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
 ]
