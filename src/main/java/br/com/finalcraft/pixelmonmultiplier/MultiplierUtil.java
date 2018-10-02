@@ -21,13 +21,13 @@ public class MultiplierUtil {
 
     public static double getByRankPermission(Player player){
         if (player.hasPermission("be.lenda"))       return 10.00D;
-        if (player.hasPermission("be.mito"))        return 6.00D;
-        if (player.hasPermission("be.genio"))       return 3.00D;
-        if (player.hasPermission("be.mestre"))      return 1.50D;
-        if (player.hasPermission("be.prodigio"))    return 0.80D;
-        if (player.hasPermission("be.veterano"))    return 0.50D;
-        if (player.hasPermission("be.aprendiz"))    return 0.30D;
-        if (player.hasPermission("be.membro"))      return 0.15D;
+        if (player.hasPermission("be.mito"))        return 4.00D;
+        if (player.hasPermission("be.genio"))       return 2.00D;
+        if (player.hasPermission("be.mestre"))      return 1.00D;
+        if (player.hasPermission("be.prodigio"))    return 0.60D;
+        if (player.hasPermission("be.veterano"))    return 0.35D;
+        if (player.hasPermission("be.aprendiz"))    return 0.20D;
+        if (player.hasPermission("be.membro"))      return 0.10D;
         if (player.hasPermission("be.novato"))      return 0.05D;
         if (player.hasPermission("be.visitante"))   return 0.00D;
         return 0D;

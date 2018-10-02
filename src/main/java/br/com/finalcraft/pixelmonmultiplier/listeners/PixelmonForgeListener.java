@@ -29,22 +29,24 @@ public class PixelmonForgeListener {
                 return;
             }
             event.setExperience(newExp);
+
+            String lore = buildLore(player,pmPlayerData,oldExp,newExp);
             if (PixelmonMultiplier.debugMode) {
-                broadcastTheEvent(event,player,pmPlayerData,oldExp,newExp);
+                FancyText.tellRawBroadcast(new FancyText("§3[FinalCraftDebug]§3§l ▶ §eO pokemon do jogador " + player.getName() + ", ☾" + event.pokemon.getNickname() + "☽ recebeu " + newExp + " EXP").setHoverText(lore));
+            }else {
+                FancyText.sendTo(player,new FancyText("§aSeu pokemon ☾" + event.pokemon.getNickname() + "☽ recebeu " + newExp + " de EXP").setHoverText(lore));
             }
         } catch (Exception e) {
             PixelmonMultiplier.getPluginLogger().error("PixelmonMultiplier has thrown an exception!", e);
         }
     }
 
-    public static void broadcastTheEvent(ExperienceGainEvent event, Player player, PMPlayerData pmPlayerData, int oldExp, int newExp){
+    public static String buildLore(Player player, PMPlayerData pmPlayerData, int oldExp, int newExp){
         int personalMultiplier = (int) (pmPlayerData.getPersonalMultiplier() * 100);
         int globalMultiplier = (int) (ConfigManager.getGlobalExpMultiplier() * 100);
-        int vipMultiplier = (int) (MultiplierUtil.getByRankPermission(player) * 100);
-        int rankMultiplier = (int) (MultiplierUtil.getByVipPermission(player) * 100);
-
+        int vipMultiplier = (int) (MultiplierUtil.getByVipPermission(player) * 100);
+        int rankMultiplier = (int) (MultiplierUtil.getByRankPermission(player) * 100);
         int result = personalMultiplier + globalMultiplier + vipMultiplier + rankMultiplier;
-
         String lore =
                 "§b ◈ §d§n" + player.getName() + " Multipliers Info\n" +
                         "§2 ◈ §a + Multiplicador Pessoal: §e" + personalMultiplier + "%\n" +
@@ -54,9 +56,7 @@ public class PixelmonForgeListener {
                         "\n" +
                         "§2 ◈ §aMultiplicador Final: §e§l" + result + "§6§l%\n" +
                         "\n" +
-                        "\n§6 ◈ OLD EXP : §e" + oldExp + "\n" +
-                        "\n§6 ◈ NEW EXP : §e" + newExp + "\n";
-
-        FancyText.tellRawBroadcast(new FancyText("§3[FinalCraftDebug]§3§l ▶ §eO pokemon do jogador " + player.getName() + ", ☾" + event.pokemon.getNickname() + "☽ recebeu " + newExp + " EXP").setHoverText(lore));
+                        "\n§6 ◈ De §e" + oldExp + "§6 para §e" + newExp + "§6 pontos de EXP\n";
+        return lore;
     }
 }
