@@ -15,6 +15,9 @@ public class PermissionNodes {
     public static final String passiveVipNeoPlasma          = "pixelmonmultiplier.passive.vipneoplasma";
     public static final String passiveVipMithiril           = "pixelmonmultiplier.passive.vipmithiril";
     public static final String passiveVipGandalf            = "pixelmonmultiplier.passive.vipgandalf";
+    public static final String passiveVipFundadorBronze     = "pixelmonmultiplier.passive.vipfundadorbronze";
+    public static final String passiveVipFundadorOuro       = "pixelmonmultiplier.passive.vipfundadorouro";
+    public static final String passiveVipFundadorDiamante   = "pixelmonmultiplier.passive.vipfundadordiamante";
 
 
 }

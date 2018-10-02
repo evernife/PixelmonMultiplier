@@ -51,12 +51,13 @@ public class CoreCommand implements CommandExecutor {
     // Command Help
     // -----------------------------------------------------------------------------------------------------------------------------//
     public static CommandResult help(CommandSource sender, List<String> argumentos){
-        sender.sendMessage(Text.of("§6§m------------------§6( §a▧▨▧▨ §e§lPMultiplier§e §a▧▨▧▨ §6)§m------------------"));
+        sender.sendMessage(Text.of("   §6§m-------------§6( §a▧▨▧▨ §e§lPMultiplier§e §a▧▨▧▨ §6)§m-------------"));
         if (sender instanceof Player){
             Player player = (Player) sender;
             FancyText.sendTo(player,       new FancyText("§3§l ▶ §a/pixelm info","§bMostra as informações do seu Multiplicador de EXP atual","/pixelm info"));
             if (sender.hasPermission(PermissionNodes.commandPMultiplierReload)){
-                FancyText.sendTo(player,       new FancyText("§3§l ▶ §a/pixelm set <player> <percentage>","§bAltera o multiplicador pessoal de algum jogador!","/pixelm set <player> <percentage>",true));
+                FancyText.sendTo(player,       new FancyText("§3§l ▶ §a/pixelm set <player> <percentage>","§bAltera o multiplicador pessoal de algum jogador!","/pixelm set ",true));
+                FancyText.sendTo(player,       new FancyText("§3§l ▶ §a/pixelm setglobal <percentage>","§bAltera o multiplicador global do servidor!","/pixelm setglobal",true));
                 FancyText.sendTo(player,       new FancyText("§3§l ▶ §a/pixelm reload","§bRecarrega as configurações do plugin!","/pixelm reload ",true));
             }
             sender.sendMessage(Text.of(""));
@@ -111,8 +112,8 @@ public class CoreCommand implements CommandExecutor {
         PMPlayerData pmPlayerData = PMPlayerData.getOrCreate(player.getName());
         int personalMultiplier = (int) (pmPlayerData.getPersonalMultiplier() * 100);
         int globalMultiplier = (int) (ConfigManager.getGlobalExpMultiplier() * 100);
-        int vipMultiplier = (int) (MultiplierUtil.getByRankPermission(player) * 100);
-        int rankMultiplier = (int) (MultiplierUtil.getByVipPermission(player) * 100);
+        int vipMultiplier = (int) (MultiplierUtil.getByVipPermission(player) * 100);
+        int rankMultiplier = (int) (MultiplierUtil.getByRankPermission(player) * 100);
 
         int result = personalMultiplier + globalMultiplier + vipMultiplier + rankMultiplier;
 

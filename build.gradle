@@ -58,7 +58,7 @@ repositories {
 dependencies {
     compile 'org.spongepowered:spongeapi:7.1.0-SNAPSHOT'
 
-    compile name: "EverNifeCoreSpongy-2.1.7d"
+    compile name: "EverNifeCoreSpongy-2.1.8a"
     compile name: "PixelmonGenerations-1.12.2-2.2.1"
 }
 
