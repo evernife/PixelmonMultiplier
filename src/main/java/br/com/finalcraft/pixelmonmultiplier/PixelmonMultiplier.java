@@ -24,6 +24,8 @@ import org.spongepowered.api.plugin.PluginContainer;
 				})
 public class PixelmonMultiplier {
 
+	public static boolean debugMode = false;
+
 	public static PluginContainer instance;
 
 	public static Logger getPluginLogger(){

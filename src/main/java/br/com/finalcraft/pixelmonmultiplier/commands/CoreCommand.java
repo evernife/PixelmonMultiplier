@@ -39,6 +39,8 @@ public class CoreCommand implements CommandExecutor {
                 return set(sender,argumentos);
             case "setglobal":
                 return setglobal(sender,argumentos);
+            case "debug":
+                return debug(sender,argumentos);
         }
 
         sender.sendMessage(Text.of("§cErro de parametros, por favor use /rankup help"));
@@ -195,6 +197,26 @@ public class CoreCommand implements CommandExecutor {
         ConfigManager.setGlobalExpMultiplier(percentage / 100D);
 
         sender.sendMessage(Text.of("§3§l ▶ §aO multiplicador de EXP global foi alterado para: " + percentage + "%"));
+        return CommandResult.success();
+    }
+
+
+    // -----------------------------------------------------------------------------------------------------------------------------//
+    // Command SetGlobal
+    // -----------------------------------------------------------------------------------------------------------------------------//
+    public static CommandResult debug(CommandSource sender, List<String> argumentos){
+
+        if (!FCSpongeUtil.hasThePermission(sender, PermissionNodes.commandPMultiplierDebug)){
+            return CommandResult.success();
+        }
+
+        if (PixelmonMultiplier.debugMode){
+            PixelmonMultiplier.debugMode = false;
+            sender.sendMessage(Text.of("§3§l ▶ §eDebugMode desativado"));
+        }else {
+            PixelmonMultiplier.debugMode = true;
+            sender.sendMessage(Text.of("§3§l ▶ §aDebugMode ativado"));
+        }
         return CommandResult.success();
     }
 }

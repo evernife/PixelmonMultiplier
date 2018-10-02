@@ -16,7 +16,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 
 
 group 'br.com.finalcraft'
-version '1.0.8'
+version '1.1.1a'
 archivesBaseName = "PixelmonMultiplier-[1.12.2]"
 
 apply plugin: "java"
