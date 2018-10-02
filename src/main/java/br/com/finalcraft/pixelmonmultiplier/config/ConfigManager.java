@@ -15,6 +15,11 @@ public class ConfigManager {
         return globalExpMultiplier;
     }
 
+    public static void setGlobalExpMultiplier(double newMultiplier){
+        globalExpMultiplier = newMultiplier;
+        mainConfig.setValue("Global.ExpMultiplier",globalExpMultiplier);
+    }
+
     public static void initialize(PluginContainer instance){
         mainConfig  = new Config(instance,"config.yml"      ,false);
 

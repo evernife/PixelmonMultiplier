@@ -4,6 +4,7 @@ public class PermissionNodes {
 
     public static final String commandPMultiplierReload     = "pixelmonmultiplier.command.pmultiplier.reload";
     public static final String commandPMultiplierInfo       = "pixelmonmultiplier.command.pmultiplier.info";
+    public static final String commandPMultiplierSet        = "pixelmonmultiplier.command.pmultiplier.set";
 
 
     public static final String passiveVipAqua               = "pixelmonmultiplier.passive.vipaqua";

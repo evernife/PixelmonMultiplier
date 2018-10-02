@@ -27,26 +27,44 @@ public class PMPlayerData implements PDSection {
 
     private PlayerData playerData;
     private Double personalMultiplier = 0D;
+    public boolean recentChanged = false;
 
     public PMPlayerData(PlayerData playerData) {
         this.playerData = playerData;
+        playerData.addConfigSection(this);
         this.personalMultiplier = playerData.getConfig().getDouble("PixelmonMultiplier.personalMultiplier", personalMultiplier);
     }
 
     @Override
     public void save(PlayerData playerData) {
-        playerData.getConfig().setValue("PixelmonMultiplier.personalMultiplier",this.personalMultiplier);
+        if (this.recentChanged){
+            playerData.getConfig().setValue("PixelmonMultiplier.personalMultiplier",this.personalMultiplier);
+            this.recentChanged = false;
+        }
     }
 
     public void setRecentChanged() {
-        this.playerData.setRecentChanged();
+        if (!this.recentChanged) {
+            this.recentChanged = true;
+            this.playerData.setRecentChanged();
+        }
+    }
+
+    public void setPersonalMultiplier(double multiplier){
+        this.personalMultiplier = multiplier;
+        forceSavePlayerDataOnYML();
+    }
+
+    public boolean forceSavePlayerDataOnYML() {
+        this.setRecentChanged();
+        return this.playerData.savePlayerDataOnYML();
     }
 
     public PlayerData getPlayerData() {
         return playerData;
     }
 
-    public Double getPersonalMultiplier() {
+    public double getPersonalMultiplier() {
         return personalMultiplier;
     }
 
